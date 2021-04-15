@@ -1,9 +1,22 @@
-<h1>welcome to Bookers !!</h1>
-<h1>In Bookers,</h1>
-<h1>you can share and exchange your opinions , inpressions , and emotions</h1>
-<h1>about various books!</h1>
+<html>
 
+  <body>
+    <h1 class="container">welcome to <i class="fas fa-book"></i><strong>Bookers !!</strong></h1>
+    <p class="container">In <i class="fas fa-book"></i><strong>Bookers</strong>,</p>
+    <p class="container">you can share and exchange your opinions , inpressions , and emotions</p>
+    <p class="container">about various books!<br><br>
 
+      <button type="button" class="btn btn-info btn-block">
+        <%= link_to "Log in", new_user_session_path %>
+      </button>
 
+      <button type="button" class="btn btn-success btn-block">
+        <%= link_to "Sign Up", new_user_registration_path %>
+      </button>
+    </p>
+  </body>
 
-<header>CopyRight Infratop.inc</header>
+    <footer class="mx-auto" style="width: 200px;">
+      <br>CopyRight Infratop.inc
+    </footer>
+</html>
