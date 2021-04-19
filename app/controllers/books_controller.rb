@@ -22,8 +22,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @user = current_user
-    @books = Book.page(params[:page]).reverse_order
+    @user = @book.user
   end
 
   def edit

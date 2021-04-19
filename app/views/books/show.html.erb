@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xs-12">
                   <h2>User info</h2>
-                  <%= attachment_image_tag @user, :profile_image_id, :fill, 60, 60, fallback: "no_image.jpg"%>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
                   <div class="border-top" style="padding:10px;">name：<%= @user.name %></div>
                   <div class="border-top" style="padding:10px;">introduction</div><br><br>
                     <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
@@ -35,14 +35,10 @@
         <div class="col-lg-9">
           <h2 class="border-bottom" style="padding10px;">Book detail</h2>
           <div class="border-bottom" style="padding10px;">Title	Opinion</div>
-          <% @books.each do |book| %>
-            <p><%= attachment_image_tag book.user, :profile_image_id, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-            <%= link_to user.user_name, user_path(user.id) %>
-            <%= link_to book.title, book_path(book.id) %>
-            <span><%= book.body %></span>
-
-          <% end %>
-          <%= paginate @books %>
+            <p><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+            <%= link_to @book.user.name, user_path(@book.user.id) %>
+            <%= link_to @book.title, book_path(@book.id) %>
+            <span><%= @book.body %></span>
         </div>
     </div>
 </div>
