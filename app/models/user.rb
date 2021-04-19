@@ -7,7 +7,10 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   attachment :profile_image
-  
+
+  validates :name, presence: true
+  validates :introduction, presence: true
+
   def posts
   return Post.where(user_id: book.id)
   end

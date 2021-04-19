@@ -7,9 +7,11 @@
                   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
                   <div class="border-top" style="padding:10px;">name：<%= @user.name %></div>
                   <div class="border-top" style="padding:10px;">introduction</div><br><br>
+                  <% if @user.id == current_user.id %>
                     <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
                     <i class="fas fa-user-cog text-secondary"></i>
                     <% end %>
+                  <% end %>
                 </div>
 
                 <div class="w-100"></div>

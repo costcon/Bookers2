@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'books/:id' => 'books#show', as: 'book'
 
-  resources :books, only: [:new, :create, :index, :show, :destroy, :update]
+  resources :books, only: [:new, :create, :index, :show, :destroy, :update, :edit]
 
   resources :users, only: [:show, :edit, :update, :create, :index]
 

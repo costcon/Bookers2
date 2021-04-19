@@ -1,4 +1,10 @@
 <div class="mx-auto" style="width: 200px;">
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
   <h2>User info</h2>
   <%= form_with model:@user, local:true do |f| %>
     <label for="Name">Name</label><br>

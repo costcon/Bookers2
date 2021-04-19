@@ -16,7 +16,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to books_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -25,10 +25,22 @@ class BooksController < ApplicationController
     @user = @book.user
   end
 
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
+    else
+      render :edit
+    end
+  end
+
   def edit
   end
 
   def destroy
+    @book = book.find(params[:id])
+    @book.destroy
+    redirect_to book_path(@book.id)
   end
 
 
