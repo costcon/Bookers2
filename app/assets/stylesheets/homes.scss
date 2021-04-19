@@ -3,17 +3,4 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.container-fluid {
-  display: flex;
-  justify-content: flex-end;
-  font-size:20px;
-}
 
-.container-fluid >:first-child {
-  margin-right: auto;
-}
-
-a:link, a:visited, a:hover, a:active {
-  vertical-align: middle;
-  color: white;
-}

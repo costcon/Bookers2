@@ -13,59 +13,44 @@
   </head>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <% if user_signed_in? %>
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand mr-auto"><%= link_to "Bookers", root_path %></a>
+      <div class="container">
+        <%= link_to "Bookers", root_path,class:"navbar-brand mr-auto text-light" %>
         <button class="navbar-toggler" type="button"
-            data-toggle="collapse"
-            data-target="#navmenu1"
-            aria-controls="navmenu1"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+          data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false"
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navmenu1">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#"><%= link_to user_path(current_user.id) do %>
-              <i class="fas fa-home"></i>Home</a>
+          <div class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <%= link_to user_path(current_user.id),class:"nav-item nav-link text-light" do %>
+              <i class="fas fa-home"></i>Home
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to root_path do %>
+            <%= link_to users_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-link"></i>Users</a>
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to books_path do %>
+            <%= link_to books_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-book"></i>Books</a>
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to destroy_user_session_path, method: :delete do %>
+            <%= link_to destroy_user_session_path, method: :delete,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-sign-out-alt"></i>logout</a>
             <% end %>
           </div>
         </div>
       </div>
 
-
-    <% else %>
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand mr-auto"><%= link_to "Bookers", root_path %></a>
-        <button class="navbar-toggler" type="button"
-            data-toggle="collapse"
-            data-target="#navmenu1"
-            aria-controls="navmenu1"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navmenu1">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#"><%= link_to root_path do %>
+            <% else %>
+            <%= link_to root_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-home"></i>Home</a>
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to home_about_path do %>
+            <%= link_to home_about_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-link"></i>About</a>
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to new_user_session_path do %>
+            <%= link_to new_user_registration_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-user-plus"></i>sign up</a>
             <% end %>
-            <a class="nav-item nav-link" href="#"><%= link_to new_user_registration_path do %>
+            <%= link_to new_user_session_path,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-sign-in-alt"></i>login</a>
             <% end %>
           </div>
@@ -75,4 +60,8 @@
     <% end %>
   </nav>
     <%= yield %>
+
+    <footer class="mx-auto" style="width: 200px;">
+      <br>CopyRight Infratop.inc
+    </footer>
 </html>
