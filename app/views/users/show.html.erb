@@ -1,5 +1,16 @@
+
 <div class="container">
     <div class="row">
+      <% if @user.errors.any? %>
+        <h2 class="text-danger">
+          <%= @user.errors.count %>error prohibited this obj from being saved:
+        </h2><br>
+        <ul class="text-danger">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+      <% end %>
+      </ul>
         <div class="col-lg-3 col-xs-12">
             <div class="row">
                 <div class="col-xs-12">

@@ -6,8 +6,11 @@ class UsersController < ApplicationController
 
   def create
     book = Book.new(book_params)
-    book.save
-    redirect_to users_path
+    if book.save
+      redirect_to users_path
+    else
+      render :show
+    end
   end
 
   def show
@@ -25,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(params[:id])
+      flash[:success] = "Book was successfully updated."
     else
       render :edit
     end

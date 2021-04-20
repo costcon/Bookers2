@@ -1,5 +1,15 @@
 <div class="container">
     <div class="row">
+      <% if @book.errors.any? %>
+        <h2 class="text-danger">
+          <%= @book.errors.count %>error prohibited this obj from being saved:
+        </h2><br>
+        <ul class="text-danger">
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+      <% end %>
+      </ul>
         <div class="col-lg-3 col-xs-12">
             <div class="row">
                 <div class="col-xs-12">
@@ -19,12 +29,6 @@
 
                 <div class="col-xs-12">
                   <h2>New book</h2>
-                  <% if @book.errors.any? %>
-                    <%= @book.errors.count %>件のエラーが発生しました
-                    <% @book.errors.full_messages.each do |message| %>
-                      <%= message %>
-                    <% end %>
-                  <% end %>
                   <%= form_with model: @book, id: 'new_book', class: 'new_book', local: true do |f| %>
                     <div class="field">
                       <%= f.label :Title %><br />
@@ -49,6 +53,7 @@
             <%= link_to @book.title, book_path(@book.id) %>
             <span><%= @book.body %></span>
             <% if @user.id == current_user.id %>
+              <%= link_to "Edit", edit_book_path(@book.id), class:'btn btn-succes' %>
               <button type="button" class="btn btn-success">Edit</button>
               <button type="button" class="btn btn-danger">Delete</button>
             <% end %>

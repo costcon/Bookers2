@@ -1,8 +1,12 @@
 <div class="mx-auto" style="width: 200px;">
   <% if @user.errors.any? %>
-    <%= @user.errors.count %>件のエラーが発生しました
+    <h2 class="text-danger">
+    <%= @user.errors.count %>error prohibited this obj from being saved:
+    </h2>
+    <ul class="text-danger">
     <% @user.errors.full_messages.each do |message| %>
-      <%= message %>
+      <li><%= message %></li>
+    </ul>
     <% end %>
   <% end %>
   <h2>User info</h2>
