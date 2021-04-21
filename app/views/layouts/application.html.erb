@@ -32,10 +32,10 @@
              <i class="fas fa-home"></i>Home
             <% end %></li>
             <%= link_to users_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-link"></i>Users
+              <i class="fas fa-users"></i>Users
             <% end %>
             <%= link_to books_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-book"></i>Books
+              <i class="fas fa-book-open"></i>Books
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-sign-out-alt"></i>logout
@@ -55,7 +55,7 @@
               <i class="fas fa-user-plus"></i>sign up
             <% end %>
             <%= link_to new_user_session_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-sign-in-alt"></i>Log in
+              <i class="fas fa-sign-in-alt"></i>login
             <% end %>
           </div>
         </div>

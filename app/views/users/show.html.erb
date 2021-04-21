@@ -1,62 +1,45 @@
 
-<div class="container">
+
+<% if @user.errors.any? %>
+  <h2 class="text-danger">
+    <%= @user.errors.count %>error prohibited this obj from being saved:
+  </h2><br>
+  <ul class="text-danger">
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+<% end %>
+  </ul>
+      
+<main><div class='container px-5 px-sm-0'>
+    <%= render 'users/list', user: @user, book: @book %>
+
     <div class="row">
-      <% if @user.errors.any? %>
-        <h2 class="text-danger">
-          <%= @user.errors.count %>error prohibited this obj from being saved:
-        </h2><br>
-        <ul class="text-danger">
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-      <% end %>
-      </ul>
-        <div class="col-lg-3 col-xs-12">
-            <div class="row">
-                <div class="col-xs-12">
-                  <h2>User info</h2>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-                  <div class="border-top" style="padding:10px;">name：<%= @user.name %></div>
-                  <div class="border-top" style="padding:10px;">introduction</div><br><br>
-                  <% if @user.id == current_user.id %>
-                    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-                    <i class="fas fa-user-cog text-secondary"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-
-                <div class="w-100"></div>
-
-                <div class="col-xs-12">
-                  <h2>New book</h2>
-                  <%= form_with model: @book, id: 'new_book', class: 'new_book', local: true do |f| %>
-                    <div class="field">
-                      <%= f.label :Title %><br />
-                      <%= f.text_field :title, autofocus: true %>
-                    </div>
-                    <div class="field">
-                      <%= f.label :Opinion %><br />
-                      <%= f.text_area :body, autofocus: true %>
-                    </div>
-                    <div class="actions"style="color:green;">
-                      <%= f.submit "Create Book"  %>
-                    </div>
-                  <% end %>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-9">
-          <h2 class="border-bottom" style="padding10px;">Books</h2>
-          <div class="border-bottom" style="padding10px;">Title	Opinion</div>
-          <% @books.each do |book| %>
-            <p><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+      <div class='col-md-8 offset-md-1'>
+        <h2 class="border-bottom" style="padding10px;">Books</h2>
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2">Title</div>
+          <div class="col-md-auto">Opinion</div>
+          <div class="col col-lg-2",colspan="3"></th>
+          
+        <div class="row">
+        <% @books.each do |book| %>
+          <div class="col">
+          <p><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %></p>
+          </div>
+          <div class="col-md-auto">
             <%= link_to book.title, book_path(book.id) %>
+          </div>
+          <div class="col col-lg-2">
             <span><%= book.body %></span>
-          <% end %>
-          <%= paginate @books %>
+          </div>
+        <% end %>
         </div>
+        <%= paginate @books %>
+      </div>
     </div>
+  </div>
 </div>
-
+</main>
 
 

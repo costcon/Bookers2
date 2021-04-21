@@ -1,44 +1,25 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3 col-xs-12">
-            <div class="row">
-                <div class="col-xs-12">
-                  <h2>User info</h2>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-                  <div class="border-top" style="padding:10px;">name：<%= @user.name %></div>
-                  <div class="border-top" style="padding:10px;">introduction</div><br><br>
-                    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-                    <i class="fas fa-user-cog text-secondary"></i>
-                    <% end %>
-                </div>
 
-                <div class="w-100"></div>
+    <% if @user.errors.any? %>
+      <h2 class="text-danger">
+        <%= @user.errors.count %>error prohibited this obj from being saved:
+      </h2><br>
+      <ul class="text-danger">
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    <% end %>
+      </ul>
 
-                <div class="col-xs-12">
-                  <h2>New book</h2>
-                  <%= form_with model: @book, id: 'new_book', class: 'new_book', local: true do |f| %>
-                    <div class="field">
-                      <%= f.label :Title %><br />
-                      <%= f.text_field :title, autofocus: true %>
-                    </div>
-                    <div class="field">
-                      <%= f.label :Opinion %><br />
-                      <%= f.text_area :body, autofocus: true %>
-                    </div>
-                    <div class="actions"style="color:green;">
-                      <%= f.submit "Create Book"  %>
-                    </div>
-                  <% end %>
-                </div>
-            </div>
-        </div>
+    <%= render 'users/list', user: @user, book: @book %>
+
         <div class="col-lg-9">
-          <h2 class="border-bottom" style="padding10px;">Books</h2>
-          <div class="border-bottom" style="padding10px;">Title	Opinion</div>
+          <h2 class="border-bottom" style="padding10px;">Users</h2>
+          <div class="border-bottom" style="padding10px;">image name</div>
           <% @users.each do |user| %>
             <p><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-            <%= link_to user.name, user_path(user.id) %>
+            <span><%= user.name %></span>
             <span><%= user.introduction %></span>
+            <%= link_to "show", user_path(user.id) %>
           <% end %>
         </div>
     </div>

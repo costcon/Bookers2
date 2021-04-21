@@ -51,5 +51,4 @@ class UsersController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
-
 end
