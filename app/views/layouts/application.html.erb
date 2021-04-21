@@ -17,17 +17,18 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
   　<% end %>
-      <div class="container">
-        <%= link_to "Bookers", root_path,class:"navbar-brand mr-auto text-light" %>
-        <button class="navbar-toggler" type="button"
-          data-toggle="collapse" data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navmenu1">
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
+    <div class="container">
+      <%= link_to "Bookers", root_path,class:"navbar-brand mr-auto text-light" %>
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu1">
+        <ul class="navbar-nav ml-auto">
+
+          <% if user_signed_in? %>
             <%= link_to user_path(current_user.id),class:"nav-item nav-link text-light" do %>
              <i class="fas fa-home"></i>Home
             <% end %></li>
@@ -40,29 +41,29 @@
             <%= link_to destroy_user_session_path, method: :delete,class:"nav-item nav-link text-light" do %>
               <i class="fas fa-sign-out-alt"></i>logout
             <% end %>
-          </ul>
-        </div>
+        </ul>
       </div>
+    </div>
 
             <% else %>
-            <%= link_to root_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-home"></i>Home
-            <% end %>
-            <%= link_to home_about_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-link"></i>About
-            <% end %>
-            <%= link_to new_user_registration_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-user-plus"></i>sign up
-            <% end %>
-            <%= link_to new_user_session_path,class:"nav-item nav-link text-light" do %>
-              <i class="fas fa-sign-in-alt"></i>login
-            <% end %>
+              <%= link_to root_path,class:"nav-item nav-link text-light" do %>
+                <i class="fas fa-home"></i>Home
+              <% end %>
+              <%= link_to home_about_path,class:"nav-item nav-link text-light" do %>
+                <i class="fas fa-link"></i>About
+              <% end %>
+              <%= link_to new_user_registration_path,class:"nav-item nav-link text-light" do %>
+                <i class="fas fa-user-plus"></i>sign up
+              <% end %>
+              <%= link_to new_user_session_path,class:"nav-item nav-link text-light" do %>
+                <i class="fas fa-sign-in-alt"></i>login
+              <% end %>
           </div>
         </div>
       </div>
 
 
-    <% end %>
+            <% end %>
   </nav>
     <%= yield %>
 

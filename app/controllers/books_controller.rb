@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
+
+
 
   def index
     @books = Book.page(params[:page]).reverse_order
@@ -14,17 +17,18 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @user = @book.user
-    @books = Book.page(params[:page]).reverse_order
     if @book.save
-      flash[:success] = "Book was successfully updated."
-      redirect_to books_path
+      flash[:success] = "Book was successfully created."
+      redirect_to book_path(@book.id)
     else
+      @books = Book.all
       render :"books/index"
     end
   end
 
   def show
     @book = Book.find(params[:id])
+    @book_new = Book.new
     @user = @book.user
   end
 
@@ -44,9 +48,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = book.find(params[:id])
+    @book = Book.find(params[:id])
     @book.destroy
-    redirect_to book_path(@book.id)
+    redirect_to books_path
   end
 
 
@@ -57,8 +61,16 @@ class BooksController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :profile_image_id, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
+  private
+
+  def correct_user
+    book = Book.find(params[:id])
+    if current_user.id != book.user_id
+    redirect_to books_path
+    end
+  end
 
 end
