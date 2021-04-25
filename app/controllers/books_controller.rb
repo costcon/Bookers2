@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
 
 
+
   def index
     @books = Book.page(params[:page]).reverse_order
     @book = Book.new
